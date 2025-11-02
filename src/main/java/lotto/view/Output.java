@@ -39,7 +39,7 @@ public class Output {
     public static void printLottoResults(LottoResult lottoResult) {
         System.out.println();
         System.out.println("당첨 통계");
-        System.out.println("---------");
+        System.out.println("---");
         for (Rank rank : Rank.values()) {
             printRankResult(lottoResult, rank);
         }

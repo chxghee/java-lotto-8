@@ -46,10 +46,13 @@ public enum Rank {
         if (this == MISS) {
             return "낙첨";
         }
-        return formatWinningMessage();
+        if (this == SECOND) {
+            return formatWinningMessage("%d개 일치, 보너스 볼 일치 (%s원) - ");
+        }
+        return formatWinningMessage("%d개 일치 (%s원) - ");
     }
 
-    private String formatWinningMessage() {
-        return String.format("%d개 일치 (%s원) - ", matchingNumberCount, PRIZE_FORMAT.format(prize));
+    private String formatWinningMessage(String message) {
+        return String.format(message, matchingNumberCount, PRIZE_FORMAT.format(prize));
     }
 }

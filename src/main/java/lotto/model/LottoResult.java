@@ -34,8 +34,12 @@ public class LottoResult {
     }
 
     public double calculateProfit(int lottoAmount) {
-        double profit = (double) getTotalPrize() / (lottoAmount * LOTTO_PRICE);
-        return Math.round(profit * 100.0) / 100.0;
+        double profitPercent = (double) getTotalPrize() / (lottoAmount * LOTTO_PRICE) * 100;
+        return roundToTwoDecimal(profitPercent);
+    }
+
+    private static double roundToTwoDecimal(double profitPercent) {
+        return Math.round(profitPercent * 100.0) / 100.0;
     }
 
     private long getTotalPrize() {
