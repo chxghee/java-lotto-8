@@ -49,6 +49,14 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public Rank calculateRanking(Lotto winningNumbers, LottoNumber bonusBall) {
+        int matchingCount = (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+        boolean hasMatchedBonusBall = numbers.contains(bonusBall);
+        return Rank.getRanking(matchingCount, hasMatchedBonusBall);
+    }
+
     public Set<LottoNumber> getNumbers() {
         return Collections.unmodifiableSet(numbers);
     }
