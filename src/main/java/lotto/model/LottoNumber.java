@@ -15,6 +15,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
         this.number = number;
     }
 
+    public static LottoNumber bonusNumber(int number, Lotto winningLotto) {
+        LottoNumber bonusNumber = new LottoNumber(number);
+        if (winningLotto.contains(bonusNumber)) {
+            throw new ApplicationException(LottoNumberException.DUPLICATE_BONUS_NUMBER);
+        }
+        return bonusNumber;
+    }
+
     private static void validateLottoNumberBound(int number) {
         if (number > LOTTO_MAX_NUMBER || number < LOTTO_MIN_NUMBER) {
             throw new ApplicationException(LottoNumberException.INVALID_LOTTO_NUMBER_RANGE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);

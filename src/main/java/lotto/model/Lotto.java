@@ -45,6 +45,10 @@ public class Lotto {
         return uniqueLottoNumbers;
     }
 
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
+
     public Set<LottoNumber> getNumbers() {
         return Collections.unmodifiableSet(numbers);
     }
