@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoAmount;
-import lotto.model.LottoNumber;
-import lotto.model.Lottos;
+import lotto.model.*;
 import lotto.model.strategy.NumbersGenerator;
 import lotto.parser.InputParser;
 import lotto.view.Input;
@@ -28,8 +25,13 @@ public class LottoController {
 
         Lotto winningLotto = getWinningNumbers();
         LottoNumber bonusNumber = getBonusNumber(winningLotto);
+        calculateResults(lottos, winningLotto, bonusNumber);
+    }
 
-
+    private static void calculateResults(Lottos lottos, Lotto winningLotto, LottoNumber bonusNumber) {
+        LottoResult lottoResult = LottoResult.of(lottos, winningLotto, bonusNumber);
+        Output.printLottoResults(lottoResult);
+        Output.printProfit(lottoResult.calculateProfit(lottos.size()));
     }
 
     private static LottoAmount getLottoAmount() {
