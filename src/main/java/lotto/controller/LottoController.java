@@ -60,7 +60,7 @@ public class LottoController {
         Output.printBonusNumberInputMessage();
         try {
             int bonusNumber = InputParser.parseBonusNumber(Input.read());
-            return LottoNumber.bonusNumber(bonusNumber, winningLotto);
+            return LottoNumber.bonusNumber(bonusNumber, winningLotto.getNumbers());
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
             return getBonusNumber(winningLotto);

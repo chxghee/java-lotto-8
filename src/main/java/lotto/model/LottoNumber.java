@@ -5,6 +5,7 @@ import lotto.exception.LottoNumberException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static lotto.model.LottoConstants.*;
 
@@ -30,6 +31,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
             throw new ApplicationException(LottoNumberException.INVALID_LOTTO_NUMBER_RANGE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
         }
         return lottoNumber;
+    }
+
+    public static LottoNumber bonusNumber(int bonusNumber, Set<LottoNumber> lottoNumbers) {
+        LottoNumber bonus = LottoNumber.from(bonusNumber);
+        if (lottoNumbers.contains(bonus)) {
+            throw new ApplicationException(LottoNumberException.DUPLICATE_BONUS_NUMBER);
+        }
+        return bonus;
     }
 
     @Override
