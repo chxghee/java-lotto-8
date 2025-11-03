@@ -28,7 +28,7 @@ class LottoTest {
     class 로또_당첨결과_테스트 {
 
         private final Lotto winningNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-        private final LottoNumber bonusBall = LottoNumber.bonusNumber(7, winningNumbers);
+        private final LottoNumber bonusBall = LottoNumber.bonusNumber(7, winningNumbers.getNumbers());
 
         @Test
         void 로또번호가_우승번호와_모두_일치하면_FIRST를_반환해야_한다() {
@@ -79,14 +79,14 @@ class LottoTest {
         @Test
         void 로또가_특정_번호를_포함하고_있으면_true를_반환한다() {
             Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber lottoNumber = new LottoNumber(1);
+            LottoNumber lottoNumber = LottoNumber.from(1);
             assertThat(lotto.contains(lottoNumber)).isTrue();
         }
 
         @Test
         void 로또가_특정_번호를_포함하지_않으면_false를_반환한다() {
             Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber lottoNumber = new LottoNumber(7);
+            LottoNumber lottoNumber = LottoNumber.from(7);
             assertThat(lotto.contains(lottoNumber)).isFalse();
         }
     }
@@ -96,12 +96,12 @@ class LottoTest {
         Lotto lotto = Lotto.from(List.of(6, 5, 4, 3, 2, 1));
 
         List<LottoNumber> expected = List.of(
-                new LottoNumber(1),
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6)
+                LottoNumber.from(1),
+                LottoNumber.from(2),
+                LottoNumber.from(3),
+                LottoNumber.from(4),
+                LottoNumber.from(5),
+                LottoNumber.from(6)
         );
 
         assertThat(lotto.getNumbers()).containsExactlyElementsOf(expected);
