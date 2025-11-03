@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Lotto {
+import static lotto.model.LottoConstants.*;
 
-    public static final int LOTTO_NUMBER_COUNT = 6;
+public class Lotto {
 
     private final TreeSet<LottoNumber> numbers;
 

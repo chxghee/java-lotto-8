@@ -3,9 +3,10 @@ package lotto.model;
 import lotto.exception.ApplicationException;
 import lotto.exception.LottoAmountException;
 
+import static lotto.model.LottoConstants.*;
+
 public class LottoAmount {
 
-    private static final int LOTTO_PRICE = 1000;
     private final int amount;
 
     private LottoAmount(int amount) {

@@ -4,9 +4,10 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
+import static lotto.model.LottoConstants.*;
+
 public class LottoResult {
 
-    private static final int LOTTO_PRICE = 1000;
     private final Map<Rank, Integer> results;
 
     private LottoResult(Map<Rank, Integer> results) {

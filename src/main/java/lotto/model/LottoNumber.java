@@ -3,10 +3,9 @@ package lotto.model;
 import lotto.exception.ApplicationException;
 import lotto.exception.LottoNumberException;
 
-public class LottoNumber implements Comparable<LottoNumber> {
+import static lotto.model.LottoConstants.*;
 
-    public static final int LOTTO_MIN_NUMBER = 1;
-    public static final int LOTTO_MAX_NUMBER = 45;
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private final int number;
 
