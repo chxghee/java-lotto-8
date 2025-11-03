@@ -3,29 +3,33 @@ package lotto.model;
 import lotto.exception.ApplicationException;
 import lotto.exception.LottoNumberException;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static lotto.model.LottoConstants.*;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
+    private static final Map<Integer, LottoNumber> CACHE = new HashMap<>();
+
+    static {
+        for (int i = LOTTO_MIN_NUMBER; i <= LOTTO_MAX_NUMBER; i++) {
+            CACHE.put(i, new LottoNumber(i));
+        }
+    }
+
     private final int number;
 
-    public LottoNumber(int number) {
-        validateLottoNumberBound(number);
+    private LottoNumber(int number) {
         this.number = number;
     }
 
-    public static LottoNumber bonusNumber(int number, Lotto winningLotto) {
-        LottoNumber bonusNumber = new LottoNumber(number);
-        if (winningLotto.contains(bonusNumber)) {
-            throw new ApplicationException(LottoNumberException.DUPLICATE_BONUS_NUMBER);
-        }
-        return bonusNumber;
-    }
-
-    private static void validateLottoNumberBound(int number) {
-        if (number > LOTTO_MAX_NUMBER || number < LOTTO_MIN_NUMBER) {
+    public static LottoNumber from(int number) {
+        LottoNumber lottoNumber = CACHE.get(number);
+        if (lottoNumber == null) {
             throw new ApplicationException(LottoNumberException.INVALID_LOTTO_NUMBER_RANGE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
         }
+        return lottoNumber;
     }
 
     @Override
@@ -39,6 +43,11 @@ public class LottoNumber implements Comparable<LottoNumber> {
         if (o == null || getClass() != o.getClass()) return false;
         LottoNumber lottoNumber = (LottoNumber) o;
         return this.number == lottoNumber.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(number);
     }
 
     @Override
